@@ -47,9 +47,10 @@ namespace minghu6{
 		}
 
 		/* start from 0 */
-		list<u32>& find(u32 col, string item);
-		list<u32>& find(pair<u32, string>query);
+		list<u32> find(u32 col, string item);
+		list<u32> find(pair<u32, string>query);
 
+		string getline(u32 row);
 		void push_back(string item);
 		void update(u32 col, u32 row, string item);
 		void update(pair<u32, u32> pos, string item);

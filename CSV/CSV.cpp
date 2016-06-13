@@ -40,6 +40,7 @@ bool CSV::loadCSV(const char *path)
 			memset(buf, 0, sizeof(char) * len);
 		}
 		delete[] buf;
+		fin.close();
 		return true;
 	}
 	else{
@@ -71,7 +72,11 @@ bool CSV::saveCSV(const char *path /* = NULL */)
 			for (; it != rStringMap.end(); ++it)
 			{
 				string strTemp = it->second;
-				strTemp += ',';
+				
+				if ((++it) != rStringMap.end()){
+					strTemp += ',';
+				}
+				it--;
 				fout << strTemp;
 				//cout << strTemp.c_str() << "  ";
 			}
@@ -153,7 +158,7 @@ int CSV::getParamFromString(string str, vector<string> &stringVec, char delim)
 	return stringVec.size();
 }
 
-list<u32>& CSV::find(u32 col, string item){
+list<u32> CSV::find(u32 col, string item){
 
 	map<u32, map<u32, string>> stringMap = this->m_stringMap;
 	list<u32> res;
@@ -162,7 +167,7 @@ list<u32>& CSV::find(u32 col, string item){
 	{
 		map<u32, string> line=iter->second;
 
-		cout << line[col];
+		//cout << line[col];
 		if (line[col] == item)res.push_back(iter->first);
 
 	}
@@ -170,6 +175,25 @@ list<u32>& CSV::find(u32 col, string item){
 	return res;
 }
 
-list<u32>& CSV::find(pair<u32, string>query){
+list<u32> CSV::find(pair<u32, string>query){
 	return CSV::find(query.first, query.second);
+}
+
+string CSV::getline(u32 row){
+
+	map<u32, string> &rStringMap = this->m_stringMap[row];
+	map<u32, string>::iterator it = rStringMap.begin();
+	string strTemp;
+	for (; it != rStringMap.end(); ++it)
+	{
+		strTemp += it->second;
+
+		if ((++it) != rStringMap.end()){
+			strTemp += ',';
+		}
+		it--;
+		
+		//cout << strTemp.c_str() << "  ";
+	}
+	return strTemp;
 }

@@ -38,25 +38,24 @@ void test_saveload(){
 void test_find(){
 	CSV cs("D:\\Coding\\C-C++\\utils\\utils\\Test\\test.csv");
 	list<unsigned long> res, res2;
-	//res = cs.find(2, string("公孙子良"));
+	res = cs.find(2, string("公孙子良"));
 	res2 = cs.find(pair<unsigned long, string>(6, string("d")));
 
-	/*
 	list <unsigned long>::iterator iter;
 	for (iter = res.begin(); iter != res.end(); iter++) {
-		cout << *iter << endl;
+		cout << *iter <<":  " << cs.getline(*iter) << endl;
 	}
 
 	for (iter = res2.begin(); iter != res2.end(); iter++) {
-		cout << *iter << endl;
+		cout << *iter << ":  " << cs.getline(*iter) << endl;
 	}
-	*/
+	
 
 }
 
 int test_CSV(){
-	test_read_csv_file();
-	//test_find();
+	//test_read_csv_file();
+	test_find();
 	//test_saveload();
 	system("pause");
 	return 0;
