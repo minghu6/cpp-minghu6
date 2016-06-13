@@ -64,7 +64,7 @@ Date::Date(Date& date){
 Date::Date(string date_s){
 	date_s = trimString(date_s);
 	vector<string>v;
-	splitString(date_s, v, string("-"));
+	v=splitString(date_s, string("-"));
 	int y = atoi(v[0].c_str());
 	int m = atoi(v[1].c_str());
 	int d = atoi(v[2].c_str());

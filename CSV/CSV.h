@@ -27,7 +27,7 @@ namespace minghu6{
 		{
 			assert(loadCSV(path));
 		}
-		~CSV(){  }
+		~CSV(){ saveCSV(); }
 
 		bool loadCSV(const char *path);
 		bool saveCSV(const char *path = NULL);
@@ -58,8 +58,6 @@ namespace minghu6{
 
 		void update(map<u32, map<u32, string>> csvMap){ m_stringMap = csvMap; };
 		
-
-
 	};
 }
 

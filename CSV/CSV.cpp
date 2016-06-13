@@ -8,70 +8,46 @@
 #include "../string/string.h"
 
 using std::ofstream;
+using std::ifstream;
 
 using minghu6::CSV;
 using minghu6::trimString;
+using minghu6::splitString;
+
 
 bool CSV::loadCSV(const char *path)
 {
-	FILE *pFile = fopen(path, "r");
+	ifstream fin;
+	fin.open(path);
 
-	if (pFile)
-	{
-		fseek(pFile, 0, SEEK_END);
-		u32 uSize = ftell(pFile);
-		rewind(pFile);
+	if (fin.is_open()){
+		this->m_csvPath = path;
+		const int len = 8000;//1kb
+		char *buf = new char[8000];
+		memset(buf, 0, sizeof(char) * len);
 
-		char *fileBuffer = new char[uSize];
-		fread(fileBuffer, 1, uSize, pFile);
-
-		map<u32, string> stringMap;
-		u32 uiIndex = 1;
-		char *pBegin = fileBuffer;
-		char *pEnd = strchr(pBegin, '\n');
-
-
-		pBegin = pEnd + 1;
-		pEnd = strchr(pBegin, '\n');
-
-		while (pEnd)
-		{
-			string strTemp;
-			strTemp.insert(0, pBegin, pEnd - pBegin);
-			assert(!strTemp.empty());
-			stringMap[uiIndex++] = strTemp;
-			pBegin = pEnd + 1;
-			pEnd = strchr(pBegin, '\n');
-		}
-		delete[]fileBuffer;
-		fileBuffer = NULL;
-		pBegin = NULL;
-		pEnd = NULL;
-
-		map<u32, string>::iterator iter = stringMap.begin();
-		for (; iter != stringMap.end(); ++iter)
-		{
-			vector<string> stringVec;
-			map<u32, string> stringMapTemp;
-			assert(getParamFromString(iter->second, stringVec) > 0);
-
-			vector<string>::size_type idx = 0;
-			for (; idx != stringVec.size(); ++idx)
-			{
-				stringMapTemp[idx + 1] = stringVec[idx];
+		int col = 0;
+		while (fin.getline(buf, len)){
+			
+			vector<string> v = splitString(string(buf), ",");
+			map<u32, string> stringMap;
+			//cout << string(buf);
+			for (u32 i = 0; i < v.size(); ++i){
+				stringMap[i] = trimString(v[i]);
 			}
-
-			m_stringMap[iter->first] = stringMapTemp;
+			this->m_stringMap[col] = stringMap;
+			col++;
+			memset(buf, 0, sizeof(char) * len);
 		}
-
-		fclose(pFile);
-		m_csvPath = path;
+		delete[] buf;
 		return true;
 	}
-	else
-	{
+	else{
+		this->m_csvPath = string();
 		return false;
 	}
+	
+
 }
 
 
@@ -82,40 +58,10 @@ bool CSV::saveCSV(const char *path /* = NULL */)
 		m_csvPath = path;
 	}
 
-	/*
-	FILE *pFile = fopen(m_csvPath.c_str(), "w");
-	if (pFile)
-	{
-		map<u32, map<u32, string>>::iterator iter = m_stringMap.begin();
-		for (; iter != m_stringMap.end(); ++iter)
-		{
-			map<u32, string> &rStringMap = iter->second;
-			map<u32, string>::iterator it = rStringMap.begin();
-			for (; it != rStringMap.end(); ++it)
-			{
-				string strTemp = it->second;
-				strTemp += ',';
-				fwrite(strTemp.c_str(), sizeof(strTemp.c_str()), 1, pFile);
-				//cout << strTemp.c_str() << "  ";
-			}
-
-			char delim = '\n';
-			fwrite(&delim, sizeof(delim), 1, pFile);
-		}
-
-		fclose(pFile);
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-	*/
-
 	ofstream fout;
 	fout.open(this->m_csvPath);
 
-	if (fout)
+	if (fout.is_open())
 	{
 		map<u32, map<u32, string>>::iterator iter = m_stringMap.begin();
 		for (; iter != m_stringMap.end(); ++iter)

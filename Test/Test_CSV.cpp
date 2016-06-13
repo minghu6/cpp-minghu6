@@ -55,9 +55,9 @@ void test_find(){
 }
 
 int test_CSV(){
-	//test_read_csv_file();
+	test_read_csv_file();
 	//test_find();
-	test_saveload();
+	//test_saveload();
 	system("pause");
 	return 0;
 }

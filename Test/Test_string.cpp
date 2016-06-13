@@ -9,18 +9,18 @@ using minghu6::rtrimString;
 
 
 void test_splitString(){
-	string s="1999-09-02";
-	vector<string>v;
+	string s="1999-09-02--a-";
+	vector<string> v;
 	
-	splitString(s, v, "-");
+	v=splitString(s, "-");
 
 	
 	cout << v.size() << endl;
-	cout << v[0]<<" ";
-	cout << v[1]<<" ";
-	cout << v[2]<<" "<<endl;
+	for (int i = 0; i < v.size(); ++i){
+		cout << v[i] << " ";
+	}
+	cout << endl;
 	
-
 	/*
 	vector<string>::const_iterator the_iterator;
 	
