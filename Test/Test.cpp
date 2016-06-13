@@ -3,6 +3,7 @@
 int main(){
 
 	//test_string();
-	test_date();
+	//test_date();
+	test_CSV();
 	return 0;
 }
