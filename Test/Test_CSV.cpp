@@ -6,7 +6,7 @@ using minghu6::CSV;
 
 void test_read_csv_file(){
 	CSV cs("D:\\Coding\\C-C++\\utils\\utils\\Test\\test.csv");
-	map<u32, map<u32, string>> stringMap = cs.GetCSVMap();
+	map<u32, map<u32, string>> stringMap = cs.getCSVMap();
 
 	map<u32, map<u32, string>>::iterator iter = stringMap.begin();
 	for (; iter != stringMap.end(); ++iter)

@@ -22,21 +22,21 @@ namespace minghu6{
 		CSV(){}
 		CSV(const char *path)
 		{
-			assert(LoadCSV(path));
+			assert(loadCSV(path));
 		}
 		~CSV(){}
 
-		bool LoadCSV(const char *path);
-		bool SaveCSV(const char *path = NULL);
+		bool loadCSV(const char *path);
+		bool saveCSV(const char *path = NULL);
 
-		bool GetIntValue(u32 uiRow, u32 uiCol, int &riValue);
-		bool GetFloatValue(u32 uiRow, u32 uiCol, double &rfValue);
-		string* GetStringValue(u32 uiRow, u32 uiCol);
+		bool getIntValue(u32 uiRow, u32 uiCol, int &riValue);
+		bool getFloatValue(u32 uiRow, u32 uiCol, double &rfValue);
+		string* getStringValue(u32 uiRow, u32 uiCol);
 
-		int GetParamFromString(string str, vector<string> &stringVec, char delim = ',');
+		int getParamFromString(string str, vector<string> &stringVec, char delim = ',');
 
 
-		map<u32, map<u32, string>>& GetCSVMap()
+		map<u32, map<u32, string>>& getCSVMap()
 		{
 			return m_stringMap;
 		}

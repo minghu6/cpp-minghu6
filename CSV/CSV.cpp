@@ -6,7 +6,7 @@
 
 using minghu6::CSV;
 
-bool CSV::LoadCSV(const char *path)
+bool CSV::loadCSV(const char *path)
 {
 	FILE *pFile = fopen(path, "r");
 
@@ -47,7 +47,7 @@ bool CSV::LoadCSV(const char *path)
 		{
 			vector<string> stringVec;
 			map<u32, string> stringMapTemp;
-			assert(GetParamFromString(iter->second, stringVec) > 0);
+			assert(getParamFromString(iter->second, stringVec) > 0);
 
 			vector<string>::size_type idx = 0;
 			for (; idx != stringVec.size(); ++idx)
@@ -68,7 +68,7 @@ bool CSV::LoadCSV(const char *path)
 	}
 }
 
-bool CSV::SaveCSV(const char *path /* = NULL */)
+bool CSV::saveCSV(const char *path /* = NULL */)
 {
 	if (path != NULL)
 	{
@@ -103,9 +103,9 @@ bool CSV::SaveCSV(const char *path /* = NULL */)
 	}
 }
 
-bool CSV::GetIntValue(u32 uiRow, u32 uiCol, int &riValue)
+bool CSV::getIntValue(u32 uiRow, u32 uiCol, int &riValue)
 {
-	string *pStr = GetStringValue(uiRow, uiCol);
+	string *pStr = getStringValue(uiRow, uiCol);
 	if (pStr)
 	{
 		riValue = atoi(pStr->c_str());
@@ -117,9 +117,9 @@ bool CSV::GetIntValue(u32 uiRow, u32 uiCol, int &riValue)
 	}
 }
 
-bool CSV::GetFloatValue(u32 uiRow, u32 uiCol, double &rfValue)
+bool CSV::getFloatValue(u32 uiRow, u32 uiCol, double &rfValue)
 {
-	string *pStr = GetStringValue(uiRow, uiCol);
+	string *pStr = getStringValue(uiRow, uiCol);
 	if (pStr)
 	{
 		rfValue = atof(pStr->c_str());
@@ -131,7 +131,7 @@ bool CSV::GetFloatValue(u32 uiRow, u32 uiCol, double &rfValue)
 	}
 }
 
-string* CSV::GetStringValue(u32 uiRow, u32 uiCol)
+string* CSV::getStringValue(u32 uiRow, u32 uiCol)
 {
 	map<u32, map<u32, string>>::iterator iter = m_stringMap.find(uiRow);
 	if (iter != m_stringMap.end())
@@ -155,7 +155,7 @@ string* CSV::GetStringValue(u32 uiRow, u32 uiCol)
 
 //用于分割字符串，将CSV表格中的一行按照规则解析成一组字符串，存储在一个vector中
 //根据CSV表格中所存储的数据的不同，重载各函数
-int CSV::GetParamFromString(string str, vector<string> &stringVec, char delim)
+int CSV::getParamFromString(string str, vector<string> &stringVec, char delim)
 {
 	char *token = strtok(const_cast<char *>(str.c_str()), &delim);
 	while (token)
