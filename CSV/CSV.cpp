@@ -1,3 +1,6 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+
 #include "CSV.h"
 #include <stdio.h>
 
@@ -113,7 +116,7 @@ bool CppCSV::GetIntValue(u32 uiRow, u32 uiCol, int &riValue)
 	}
 }
 
-bool CppCSV::GetFloatValue(u32 uiRow, u32 uiCol, float &rfValue)
+bool CppCSV::GetFloatValue(u32 uiRow, u32 uiCol, double &rfValue)
 {
 	string *pStr = GetStringValue(uiRow, uiCol);
 	if (pStr)

@@ -29,7 +29,7 @@ public:
 	bool SaveCSV(const char *path = NULL);
 
 	bool GetIntValue(u32 uiRow, u32 uiCol, int &riValue);
-	bool GetFloatValue(u32 uiRow, u32 uiCol, float &rfValue);
+	bool GetFloatValue(u32 uiRow, u32 uiCol, double &rfValue);
 	string* GetStringValue(u32 uiRow, u32 uiCol);
 
 	int GetParamFromString(string str, vector<string> &stringVec, char delim = ',');

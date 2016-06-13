@@ -4,7 +4,7 @@
 
 
 void test_read_csv_file(){
-	CppCSV cs("test.csv");
+	CppCSV cs("D:\\Coding\\C-C++\\utils\\utils\\Test\\test.csv");
 	map<u32, map<u32, string>> stringMap = cs.GetCSVMap();
 
 	map<u32, map<u32, string>>::iterator iter = stringMap.begin();
@@ -19,6 +19,9 @@ void test_read_csv_file(){
 		cout << endl;
 	}
 }
+
 int test_CSV(){
 	test_read_csv_file();
+	system("pause");
+	return 0;
 }
