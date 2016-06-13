@@ -1,9 +1,13 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 
-#include "CSV.h"
 #include <stdio.h>
+#include <fstream>
+
+#include "CSV.h"
 #include "../string/string.h"
+
+using std::ofstream;
 
 using minghu6::CSV;
 using minghu6::trimString;
@@ -78,6 +82,7 @@ bool CSV::saveCSV(const char *path /* = NULL */)
 		m_csvPath = path;
 	}
 
+	/*
 	FILE *pFile = fopen(m_csvPath.c_str(), "w");
 	if (pFile)
 	{
@@ -90,14 +95,44 @@ bool CSV::saveCSV(const char *path /* = NULL */)
 			{
 				string strTemp = it->second;
 				strTemp += ',';
-				fwrite(strTemp.c_str(), 1, 1, pFile);
+				fwrite(strTemp.c_str(), sizeof(strTemp.c_str()), 1, pFile);
+				//cout << strTemp.c_str() << "  ";
 			}
 
 			char delim = '\n';
-			fwrite(&delim, 1, 1, pFile);
+			fwrite(&delim, sizeof(delim), 1, pFile);
 		}
 
 		fclose(pFile);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	*/
+
+	ofstream fout;
+	fout.open(this->m_csvPath);
+
+	if (fout)
+	{
+		map<u32, map<u32, string>>::iterator iter = m_stringMap.begin();
+		for (; iter != m_stringMap.end(); ++iter)
+		{
+			map<u32, string> &rStringMap = iter->second;
+			map<u32, string>::iterator it = rStringMap.begin();
+			for (; it != rStringMap.end(); ++it)
+			{
+				string strTemp = it->second;
+				strTemp += ',';
+				fout << strTemp;
+				//cout << strTemp.c_str() << "  ";
+			}
+			fout << endl;
+		}
+
+		fout.close();
 		return true;
 	}
 	else

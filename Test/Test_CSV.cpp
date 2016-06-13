@@ -8,7 +8,7 @@ using std::list;
 
 using minghu6::CSV;
 
-void test_read_csv_file(){
+CSV test_read_csv_file(){
 	CSV cs("D:\\Coding\\C-C++\\utils\\utils\\Test\\test.csv");
 	map<u32, map<u32, string>> stringMap = cs.getCSVMap();
 
@@ -24,8 +24,17 @@ void test_read_csv_file(){
 		}
 		cout << endl;
 	}
+	return cs;
 }
 
+void test_saveload(){
+	CSV csv;
+	csv=test_read_csv_file();
+
+	csv.saveCSV();
+	test_read_csv_file();
+
+}
 void test_find(){
 	CSV cs("D:\\Coding\\C-C++\\utils\\utils\\Test\\test.csv");
 	list<unsigned long> res, res2;
@@ -46,8 +55,9 @@ void test_find(){
 }
 
 int test_CSV(){
-	test_read_csv_file();
+	//test_read_csv_file();
 	//test_find();
+	test_saveload();
 	system("pause");
 	return 0;
 }

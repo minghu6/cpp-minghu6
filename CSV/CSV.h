@@ -27,7 +27,7 @@ namespace minghu6{
 		{
 			assert(loadCSV(path));
 		}
-		~CSV(){ saveCSV(m_csvPath.c_str()); }
+		~CSV(){  }
 
 		bool loadCSV(const char *path);
 		bool saveCSV(const char *path = NULL);
