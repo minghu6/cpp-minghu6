@@ -111,6 +111,11 @@ namespace minghu6{
 
 		bool operator!=(Date date);
 	};
+
+}
+
+namespace minghu6{
+	Date getcurrentDate();
 }
 
 

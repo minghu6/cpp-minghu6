@@ -1,16 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+#define _CRT_SECURE_NO_WARNINGS
 
 
+#include<ctime>
 
 #include "Date.h"
 
 #include "../string/string.h"
 
 using minghu6::Date;
+//using minghu6::getcurrentDate;
 using minghu6::trimString;
 using minghu6::splitString;
 using std::atoi;
@@ -300,3 +299,19 @@ Date& Date::operator-= ( Date &date){
  bool Date::operator!= ( Date date2){
 	 return  !(this->operator==(date2));
 }
+
+
+Date minghu6::getcurrentDate(){
+	 time_t calendar_time = time(NULL);
+
+	 //locale time
+	 struct tm * tm_local = localtime(&calendar_time);
+
+	 int month = tm_local->tm_mon+1;
+	 int day = tm_local->tm_mday;
+	 int year = tm_local->tm_year + 1900;
+
+	 return Date(month, day, year);
+	 //time_t mk_time = mktime(tm_local);
+
+ }

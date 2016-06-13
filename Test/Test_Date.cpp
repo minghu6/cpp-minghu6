@@ -3,6 +3,7 @@
 #include "../utils.h"
 
 using minghu6::Date;
+using minghu6::getcurrentDate;
 //using namespace minghu6;
 
 void test_getDate(){
@@ -35,7 +36,7 @@ void test_plusplus(){
 
 void test_pluseq(){
 	Date d(6, 13, 2016);
-	Date d2(8, 28, 2013);
+	Date d2(8, 28, 1905);
 	cout << (d +=20).getDate() << endl;
 	cout << (d -= 20).getDate() << endl;
 
@@ -60,6 +61,12 @@ void test_FWD(){
 	Date d3 = Date(d.getDate());
 	cout << d3.getDate() << endl;
 }
+
+void test_getcurrentDate(){
+	Date d = getcurrentDate();
+
+	cout << d.getDate() << endl;
+}
 int test_date(){
     
 	//test_getDate();
@@ -67,7 +74,8 @@ int test_date(){
 	//test_plusplus();
 	//test_pluseq();
 	//test_eq();
-	test_FWD();
+	//test_FWD();
+	test_getcurrentDate();
 	system("pause");
     return 0;
 }
