@@ -4,8 +4,9 @@
 #include "CSV.h"
 #include <stdio.h>
 
+using minghu6::CSV;
 
-bool CppCSV::LoadCSV(const char *path)
+bool CSV::LoadCSV(const char *path)
 {
 	FILE *pFile = fopen(path, "r");
 
@@ -67,7 +68,7 @@ bool CppCSV::LoadCSV(const char *path)
 	}
 }
 
-bool CppCSV::SaveCSV(const char *path /* = NULL */)
+bool CSV::SaveCSV(const char *path /* = NULL */)
 {
 	if (path != NULL)
 	{
@@ -102,7 +103,7 @@ bool CppCSV::SaveCSV(const char *path /* = NULL */)
 	}
 }
 
-bool CppCSV::GetIntValue(u32 uiRow, u32 uiCol, int &riValue)
+bool CSV::GetIntValue(u32 uiRow, u32 uiCol, int &riValue)
 {
 	string *pStr = GetStringValue(uiRow, uiCol);
 	if (pStr)
@@ -116,7 +117,7 @@ bool CppCSV::GetIntValue(u32 uiRow, u32 uiCol, int &riValue)
 	}
 }
 
-bool CppCSV::GetFloatValue(u32 uiRow, u32 uiCol, double &rfValue)
+bool CSV::GetFloatValue(u32 uiRow, u32 uiCol, double &rfValue)
 {
 	string *pStr = GetStringValue(uiRow, uiCol);
 	if (pStr)
@@ -130,7 +131,7 @@ bool CppCSV::GetFloatValue(u32 uiRow, u32 uiCol, double &rfValue)
 	}
 }
 
-string* CppCSV::GetStringValue(u32 uiRow, u32 uiCol)
+string* CSV::GetStringValue(u32 uiRow, u32 uiCol)
 {
 	map<u32, map<u32, string>>::iterator iter = m_stringMap.find(uiRow);
 	if (iter != m_stringMap.end())
@@ -154,7 +155,7 @@ string* CppCSV::GetStringValue(u32 uiRow, u32 uiCol)
 
 //用于分割字符串，将CSV表格中的一行按照规则解析成一组字符串，存储在一个vector中
 //根据CSV表格中所存储的数据的不同，重载各函数
-int CppCSV::GetParamFromString(string str, vector<string> &stringVec, char delim)
+int CSV::GetParamFromString(string str, vector<string> &stringVec, char delim)
 {
 	char *token = strtok(const_cast<char *>(str.c_str()), &delim);
 	while (token)

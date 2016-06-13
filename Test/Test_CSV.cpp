@@ -1,10 +1,11 @@
 #include "Test.h"
 
-#include "../CSV/CSV.h"
+#include "../utils.h"
 
+using minghu6::CSV;
 
 void test_read_csv_file(){
-	CppCSV cs("D:\\Coding\\C-C++\\utils\\utils\\Test\\test.csv");
+	CSV cs("D:\\Coding\\C-C++\\utils\\utils\\Test\\test.csv");
 	map<u32, map<u32, string>> stringMap = cs.GetCSVMap();
 
 	map<u32, map<u32, string>>::iterator iter = stringMap.begin();
