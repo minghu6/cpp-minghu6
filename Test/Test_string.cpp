@@ -12,7 +12,7 @@ void test_splitString(){
 	string s="1999-09-02";
 	vector<string>v;
 	
-	splitString(s, v, string("-"));
+	splitString(s, v, "-");
 
 	
 	cout << v.size() << endl;
@@ -42,8 +42,8 @@ void test_trim(){
 }
 int test_string(){
 
-	//test_splitString();
-	test_trim();
+	test_splitString();
+	//test_trim();
 	system("pause");
 	return 0;
 

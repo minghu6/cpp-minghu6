@@ -8,6 +8,7 @@ using std::vector;
 
 namespace minghu6{
 	void splitString(const string& s, vector<string>& v, const string& c);
+	void splitString(const string& s, vector<string>& v, const char* c);
 
 	string trimString(std::string & str);
 

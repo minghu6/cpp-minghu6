@@ -18,6 +18,12 @@ void minghu6::splitString(const string& s, vector<string>& v, const string& c)
 	if (pos1 != s.length())
 		v.push_back(s.substr(pos1));
 }
+void minghu6::splitString(const string& s, vector<string>& v, const char* c){
+
+	return minghu6::splitString(s, v, string(c));
+}
+
+
 
 string minghu6::trimString(std::string & str)
 {

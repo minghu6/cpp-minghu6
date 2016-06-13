@@ -3,8 +3,10 @@
 
 #include "CSV.h"
 #include <stdio.h>
+#include "../string/string.h"
 
 using minghu6::CSV;
+using minghu6::trimString;
 
 bool CSV::loadCSV(const char *path)
 {
@@ -59,7 +61,7 @@ bool CSV::loadCSV(const char *path)
 		}
 
 		fclose(pFile);
-		m_CSVName = path;
+		m_csvPath = path;
 		return true;
 	}
 	else
@@ -68,14 +70,15 @@ bool CSV::loadCSV(const char *path)
 	}
 }
 
+
 bool CSV::saveCSV(const char *path /* = NULL */)
 {
 	if (path != NULL)
 	{
-		m_CSVName = path;
+		m_csvPath = path;
 	}
 
-	FILE *pFile = fopen(m_CSVName.c_str(), "w");
+	FILE *pFile = fopen(m_csvPath.c_str(), "w");
 	if (pFile)
 	{
 		map<u32, map<u32, string>>::iterator iter = m_stringMap.begin();
@@ -161,6 +164,7 @@ int CSV::getParamFromString(string str, vector<string> &stringVec, char delim)
 	while (token)
 	{
 		string strTemp = token;
+		//strTemp = trimString(strTemp);//trim space!!
 		stringVec.push_back(strTemp);
 		token = strtok(NULL, &delim);
 	}
@@ -168,3 +172,23 @@ int CSV::getParamFromString(string str, vector<string> &stringVec, char delim)
 	return stringVec.size();
 }
 
+list<u32>& CSV::find(u32 col, string item){
+
+	map<u32, map<u32, string>> stringMap = this->m_stringMap;
+	list<u32> res;
+	map<u32, map<u32, string>>::iterator iter;
+	for (iter = stringMap.begin(); iter != stringMap.end(); ++iter)
+	{
+		map<u32, string> line=iter->second;
+
+		cout << line[col];
+		if (line[col] == item)res.push_back(iter->first);
+
+	}
+
+	return res;
+}
+
+list<u32>& CSV::find(pair<u32, string>query){
+	return CSV::find(query.first, query.second);
+}
