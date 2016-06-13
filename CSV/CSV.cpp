@@ -158,14 +158,14 @@ int CSV::getParamFromString(string str, vector<string> &stringVec, char delim)
 	return stringVec.size();
 }
 
-list<u32> CSV::find(u32 col, string item){
+list<u32> CSV::find(map<u32, map<u32, string>>&m, u32 col, string& item){
 
-	map<u32, map<u32, string>> stringMap = this->m_stringMap;
+	map<u32, map<u32, string>> &stringMap = m;
 	list<u32> res;
 	map<u32, map<u32, string>>::iterator iter;
 	for (iter = stringMap.begin(); iter != stringMap.end(); ++iter)
 	{
-		map<u32, string> line=iter->second;
+		map<u32, string> line = iter->second;
 
 		//cout << line[col];
 		if (line[col] == item)res.push_back(iter->first);
@@ -175,13 +175,20 @@ list<u32> CSV::find(u32 col, string item){
 	return res;
 }
 
-list<u32> CSV::find(pair<u32, string>query){
-	return CSV::find(query.first, query.second);
+list<u32> CSV::find(map<u32, map<u32, string>>&m, pair<u32, string> &query){
+	return CSV::find(m, query.first, query.second);
+}
+list<u32> CSV::find(u32 col, string& item){
+
+	return CSV::find(this->m_stringMap, col, item);
 }
 
-string CSV::getline(u32 row){
+list<u32> CSV::find(pair<u32, string> &query){
+	return CSV::find(this->m_stringMap, query.first, query.second);
+}
 
-	map<u32, string> &rStringMap = this->m_stringMap[row];
+string CSV::getline(map<u32, map<u32, string>>m, u32 row){
+	map<u32, string> &rStringMap = m[row];
 	map<u32, string>::iterator it = rStringMap.begin();
 	string strTemp;
 	for (; it != rStringMap.end(); ++it)
@@ -192,8 +199,31 @@ string CSV::getline(u32 row){
 			strTemp += ',';
 		}
 		it--;
-		
+
 		//cout << strTemp.c_str() << "  ";
 	}
 	return strTemp;
+}
+
+string CSV::getline(u32 row){
+
+	return CSV::getline(this->m_stringMap, row);
+}
+
+
+
+
+void CSV::remove_lines(map<u32, map<u32, string>>&m, u32 col, string& item){
+
+	list<u32>res = CSV::find(m, col, item);
+
+	list<u32>::iterator iter;
+
+	for (iter = res.begin(); iter != res.end(); iter++){
+		m.erase(*iter);
+	}
+}
+
+void CSV::remove_lines(u32 col, string& item){
+	CSV::remove_lines(this->m_stringMap, col, item);
 }

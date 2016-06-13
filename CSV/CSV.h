@@ -47,17 +47,22 @@ namespace minghu6{
 		}
 
 		/* start from 0 */
-		list<u32> find(u32 col, string item);
-		list<u32> find(pair<u32, string>query);
+		list<u32> find(u32 col, string& item);
+		list<u32> find(pair<u32, string> &query);
 
 		string getline(u32 row);
-		void push_back(string item);
-		void update(u32 col, u32 row, string item);
-		void update(pair<u32, u32> pos, string item);
-		void remove(string item);
+		static string getline(map<u32, map<u32, string>>m, u32 row);
+
+		/* common map<u32, string> tools*/
+		static void remove_lines(map<u32, map<u32, string>>&m, u32 col, string& item);
+		static list<u32> find(map<u32, map<u32, string>>&m, u32 col, string& item);
+		static list<u32> find(map<u32, map<u32, string>>&m, pair<u32, string> &query);
+
+		void remove_lines(u32 col, string& item);
 
 
-		void update(map<u32, map<u32, string>> csvMap){ m_stringMap = csvMap; };
+
+		void update(map<u32, map<u32, string>> &csvMap){ m_stringMap = csvMap; };
 		
 	};
 }

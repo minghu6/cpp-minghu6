@@ -50,13 +50,30 @@ void test_find(){
 		cout << *iter << ":  " << cs.getline(*iter) << endl;
 	}
 	
-
 }
 
+void test_remove_lines(){
+	CSV &cs = test_read_csv_file();
+	map<u32, string> line;
+
+	/*
+	line[0] = string("Student");
+	line[1] = string("11111100011");
+	line[2] = string("Anonymous");
+	line[3] = string("1990-02-22");
+	line[4] = string("");
+	line[5] = string("");
+	line[6] = string("d");
+	*/
+	cs.remove_lines(6, string("d"));
+	cs.saveCSV();
+	test_read_csv_file();
+}
 int test_CSV(){
 	//test_read_csv_file();
-	test_find();
+	//test_find();
 	//test_saveload();
+	test_remove_lines();
 	system("pause");
 	return 0;
 }
