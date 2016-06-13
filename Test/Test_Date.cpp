@@ -1,6 +1,6 @@
 #include "Test.h"
 
-#include "utils.h"
+#include "../utils.h"
 
 using minghu6::Date;
 //using namespace minghu6;
@@ -62,12 +62,12 @@ void test_FWD(){
 }
 int test_date(){
     
-	test_getDate();
-	test_add();
-	test_plusplus();
-	test_pluseq();
-	test_eq();
-	//test_FWD();
+	//test_getDate();
+	//test_add();
+	//test_plusplus();
+	//test_pluseq();
+	//test_eq();
+	test_FWD();
 	system("pause");
     return 0;
 }

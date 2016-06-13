@@ -1,6 +1,6 @@
 #include "Test.h"
 
-#include "utils.h"
+#include "../utils.h"
 
 using minghu6::splitString;
 using minghu6::trimString;

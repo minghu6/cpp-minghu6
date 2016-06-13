@@ -2,7 +2,7 @@
 
 int main(){
 
-	test_string();
-	//test_date();
+	//test_string();
+	test_date();
 	return 0;
 }

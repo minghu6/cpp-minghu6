@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-#include "minghu6.h"
+#include "../minghu6.h"
 
 #include <map>
 

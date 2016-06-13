@@ -8,7 +8,7 @@
 
 #include "Date.h"
 
-#include "string.h"
+#include "../string/string.h"
 
 using minghu6::Date;
 using minghu6::trimString;

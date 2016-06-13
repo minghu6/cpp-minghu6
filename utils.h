@@ -15,8 +15,8 @@
 #define UTILS_H
 
 #include "minghu6.h"
-#include "Date.h"
-#include "string.h"
+#include "Date/Date.h"
+#include "string/string.h"
 
 #endif /* UTILS_H */
 

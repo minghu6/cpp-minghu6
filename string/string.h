@@ -1,7 +1,7 @@
 
 
-#include "common_utils.h"
-#include "minghu6.h"
+#include "../common_utils.h"
+#include "../minghu6.h"
 
 #include <vector>
 using std::vector;
