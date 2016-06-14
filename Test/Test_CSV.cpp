@@ -72,8 +72,8 @@ void test_remove_lines(){
 int test_CSV(){
 	//test_read_csv_file();
 	//test_find();
-	//test_saveload();
-	test_remove_lines();
+	test_saveload();
+	//test_remove_lines();
 	system("pause");
 	return 0;
 }

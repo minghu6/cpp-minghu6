@@ -1,4 +1,7 @@
 
+#ifndef STRING_H
+#define STRING_H
+
 
 #include "../common_utils.h"
 #include "../minghu6.h"
@@ -16,3 +19,5 @@ namespace minghu6{
 
 	string rtrimString(std::string & str);
 }
+
+#endif

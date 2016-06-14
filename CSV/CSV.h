@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef CSV_H
+#define CSV_H
 
 #include <assert.h>
 #include <map>
@@ -12,6 +14,7 @@ using std::vector;
 using std::pair;
 using std::list;
 
+// unsigned long >=32 bit  in theroy;
 typedef unsigned long   u32;
 
 namespace minghu6{
@@ -67,3 +70,5 @@ namespace minghu6{
 	};
 }
 
+
+#endif

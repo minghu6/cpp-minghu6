@@ -87,9 +87,9 @@ void Date::setDate(Date date){
 string Date::getDate(){
 
 	ostringstream ost;
-	ost << this->year  << "-"
-		<< setfill('0')<<setw(2)<<this->month << "-"
-		<<setfill('0') << setw(2) << this->day;
+	ost << this->year << "-";
+	ost << setfill('0') << setw(2) << this->month << "-";
+	ost << setfill('0') << setw(2) << this->day;          
 
 
     return ost.str();

@@ -74,8 +74,8 @@ int test_date(){
 	//test_plusplus();
 	//test_pluseq();
 	//test_eq();
-	//test_FWD();
-	test_getcurrentDate();
+	test_FWD();
+	//test_getcurrentDate();
 	system("pause");
     return 0;
 }
